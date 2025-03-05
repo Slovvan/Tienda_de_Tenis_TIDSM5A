@@ -8,10 +8,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Main from './main';
 import Login from './login';
 import Register from './register';
 import Cart from './cart';
+import { Dashboard } from './Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Main></Main>,
+    element: <Dashboard></Dashboard>,
   },
   {
     path: "/register",

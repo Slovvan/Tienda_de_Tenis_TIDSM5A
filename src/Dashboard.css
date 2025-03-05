@@ -1,0 +1,65 @@
+
+body {
+    font-family: "Montserrat";
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.container {
+    display: block; 
+    width: 95%;
+    margin: 0 auto ; /* Exterior */
+}
+
+.container-header{ /* Selector  */ 
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 5px solid #3b3b3b;
+}
+
+#logo{
+    color:#83812b;
+    text-decoration: none;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.menu-nav ul{
+    list-style: none;
+}
+
+.menu-nav li {
+    display: inline;
+    margin-left: 20px ;
+}
+
+.menu-nav a {
+    text-decoration: none;
+    color: #5a5a5a;
+
+}
+
+.formulario{
+    display: flex;
+    align-items: center;
+}
+
+#buscador-header{
+    border: 1px solids #948923;
+}
+
+#buscador-header button {
+    padding: 8px;
+    font-size: 12px;
+    background-color:#a08b23 ;
+    border: none;
+    color: white;
+}
+
+#buscador-header input {
+    padding: 6px;
+    border: 2px solid;
+    border-color: black;
+    font-size: 12px;
+}
