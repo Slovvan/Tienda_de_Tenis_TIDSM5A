@@ -1,17 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Login from './login';
-import Register from './register';
-import Cart from './cart';
-import { Dashboard } from './Dashboard';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Login from "./login";
+import Register from "./register";
+import Cart from "./components/cart";
+import ProductList from "./components/ProductList";
+import Shop from "./components/Shop";
+import { Dashboard } from "./Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -30,12 +29,16 @@ const router = createBrowserRouter([
     path: "/cart",
     element: <Cart />,
   },
+  {
+    path: "/shop",
+    element: <Shop />,
+  },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-     <RouterProvider router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
