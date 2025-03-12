@@ -20,7 +20,7 @@ const Shop = () => {
   return (
     <div className="container mt-4">
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2 className="text-success">Kingdom Shoes 👑</h2>
+        <h2 className="titulo">Kingdom Shoes 👑</h2>
         <button
           className="btn btn-dark"
           onClick={() => setMostrarCarrito(true)}
