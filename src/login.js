@@ -1,44 +1,65 @@
+import { useState } from "react";
 import "./styles/stylesLogin.css"
+import { useNavigate } from "react-router-dom";
+import axios from "axios"
+import { Button } from "react-bootstrap";
+
 
 function Login(){
+    const [data, setData] = useState({})
+    const navigate = useNavigate();
+
+    const onChangeLogin= (e)=>{
+        e.preventDefault()
+        const nData = data
+        nData[e.target.name] = e.target.value
+        setData(nData)
+        console.log(nData)
+    }
+
+    const onSubmit = async ()=>{
+        try {
+            const res = await axios.post("http://localhost:4000/users/login", data)
+            console.log("Inicio de sesion exitoso")
+
+            const user = res.data.user
+            localStorage.user = JSON.stringify(user)
+
+            if (user.rol == "administrator"){
+                navigate("/admin")
+            }else{
+                navigate("/dashboard")
+            }
+            
+
+        } catch (error) {
+            alert("Usuario o Contraseña incorrecta")
+        }
+    }
+
+  
+
     return (
-    <div>
-            <div class="container">
-        <div class="form-container" id="login">
-            <h2>Iniciar Sesión</h2>
-            <form>
-                <label for="email-login">Correo:</label>
-                <input type="email" id="email-login" required/>
+        <div className="Loginbody">
+        <div className="Logincontainer">
+    <div className="form-container" id="register">
+        <h2 className="Loginh2">Iniciar Sesion</h2>
+        <form className="Loginform">
+
+                <label className="Loginlabel">Correo:</label>
+                <input className="Logininput" type="email"  onChange={onChangeLogin} name="email" placeholder="Ingresa tu Correo"/>
                 
-                <label for="password-login">Contraseña:</label>
-                <input type="password" id="password-login" required/>
-
-                <button type="submit">Entrar</button>
-            </form>
-            <p>¿No tienes cuenta? <a href="#" onclick="mostrarRegistro()">Regístrate</a></p>
-        </div>
-        <div class="form-container oculto" id="register">
-            <h2>Registrarse</h2>
-            <form>
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" required />
-
-                <label for="email-register">Correo:</label>
-                <input type="email" id="email-register" required/>
-                
-                <label for="password-register">Contraseña:</label>
-                <input type="password" id="password-register" required/>
-
-                <button type="submit">Registrarse</button>
-            </form>
-            <p>¿Ya tienes cuenta? <a href="#" onclick="mostrarLogin()">Inicia sesión</a></p>
-        </div>
+                <label className="Loginlabel">Contraseña:</label>
+                <input className="Logininput"type="password" onChange={onChangeLogin} name="password" placeholder="Ingresa tu Contraseña"/>
+            <Button className="Loginbutton Hoverbutton " onClick={onSubmit} >Iniciar Sesion</Button>
+        </form>
+        <p className="Loginp">¿No tienes cuenta? <a href="/register" >Regístrate</a></p>
     </div>
-        </div>
+</div>
+    </div>
         
     
     )
 }
-
 
 export default Login;

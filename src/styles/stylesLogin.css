@@ -1,4 +1,4 @@
-body {
+.Loginbody {
     font-family: Arial, sans-serif;
     background-color: #000;
     color: #fff;
@@ -9,7 +9,7 @@ body {
     margin: 0;
 }
 
-.container {
+.Logincontainer {
     width: 300px;
     background-color: #111;
     padding: 20px;
@@ -18,22 +18,22 @@ body {
     text-align: center;
 }
 
-h2 {
+.Loginh2 {
     margin-bottom: 15px;
 }
 
-form {
+.Loginform {
     display: flex;
     flex-direction: column;
 }
 
-label {
+.Loginlabel {
     text-align: left;
     font-size: 14px;
     margin-top: 10px;
 }
 
-input {
+.Logininput {
     padding: 8px;
     margin-top: 5px;
     border: 1px solid #fff;
@@ -42,7 +42,7 @@ input {
     border-radius: 4px;
 }
 
-button {
+.Loginbutton {
     margin-top: 15px;
     padding: 10px;
     border: none;
@@ -53,29 +53,28 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.Hoverbutton:hover {
     background-color: #ddd;
 }
 
-p {
+.Loginp {
     margin-top: 10px;
     font-size: 14px;
 }
 
-a {
+.Logina {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
 }
 
-a:hover {
+.Logina:hover {
     text-decoration: underline;
 }
 
 .oculto {
     display: none;
 }
-
 
 
 
