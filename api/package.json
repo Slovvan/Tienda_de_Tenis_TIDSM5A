@@ -1,0 +1,31 @@
+{
+  "name": "tienda",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --watch src src/index.js",
+    "start": "tsc && node build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Slovvan/Tienda-de-Tenis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Slovvan/Tienda-de-Tenis/issues"
+  },
+  "homepage": "https://github.com/Slovvan/Tienda-de-Tenis#readme",
+  "description": "",
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "mongoose": "^8.10.1"
+  }
+}
