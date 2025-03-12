@@ -1,6 +1,8 @@
 import React, { useEffect, useState} from 'react';
 import './Dashboard.css';
-
+import axios from 'axios';
+import Header from './components/header';
+import ProductList from './components/ProductList';
 
 export const Dashboard = () => {
 /* 
@@ -15,44 +17,34 @@ export const Dashboard = () => {
         setUser(user);
     } */
 
+    const [shoes, setShoes] = useState([])
+    
+    useEffect(()=>{
+        getShoes()
+    }, [])
+    
+    const getShoes = async() => {
+        try {
+            const {data} = await axios.get("http://localhost:4000/product/showAll")
+            setShoes(data.shoes)
+            
+        } catch (error) {
+            console.log("Error al obtener los tenis", error)
+        }
+    }
+
     return (
     <>
-      <header>
-        <div className="container">
-          <div className="container-header">
-            <a href="#" id="logo">Kingdom Shoes</a>
-            <nav className="menu-nav">
-              <ul>
-                <li>
-                  <a href="#">Mujeres</a>
-                </li>
-                <li>
-                  <a href="#">Hombres</a>
-                </li>
-                <li>
-                  <a href="#">Niños</a>
-                </li>
-                <li>
-                  <a href="#">Deportes</a>
-                </li>
-              </ul>
-            </nav>
-            <div className="formulario">
-              <form id="buscador-header">
-                <button type="submit">Search</button>
-                <input type="search" />
-              </form>
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header></Header>
         <main>
             <div className="container">
             <div className="container-main">
                 <h1>¡Bienvenido!</h1>
                 <p>¡Gracias por ser parte de Kingdom Shoes!</p>
+
+                <ProductList></ProductList>
             </div>
             </div>
     </main>
-    </>
-    )};
+    </>
+    )};

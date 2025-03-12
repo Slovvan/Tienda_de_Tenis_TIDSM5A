@@ -68,8 +68,40 @@
   background-color: gray !important;
 }
 
-.titulo {
-  color: goldenrod;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+.hidden {
+  display: none;
+}
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* o el tamaño que desees */
+  height: 100vh; /* o el tamaño que desees */
+}
+
+.carousel {
+  width: 80%; /* Aumenta el tamaño del carousel */
+  height: auto; /* Ajusta la altura en proporción a la imagen */
+}
+
+.carousel-inner {
+  width: 100%; /* Asegura que el contenedor de imágenes ocupe todo el espacio */
+}
+
+.carousel-item img {
+  width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
+  height: auto; /* Ajusta la altura proporcionalmente */
+}
+
+.product-link {
+  display: block;
+  border: none; /* Sin bordes */
+  padding: 0; /* Sin relleno */
+  background: none; /* Sin fondo */
+  cursor: pointer; /* Cambia el cursor cuando pasa sobre el botón */
+}
+
+
+.product-link:hover img {
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño de la imagen cuando se pasa el ratón */
 }
