@@ -90,7 +90,7 @@ function Shoe() {
             </div>
 
             <div className="text-center mt-3">
-                <button variant="warning" className="btn btn-warning px-4 py-2 fw-bold rounded-pill">
+                <button name="add" onClick={()=>{addShoes()}} variant="warning" className="btn btn-warning px-4 py-2 fw-bold rounded-pill">
                     Añadir al carrito 🛒
                 </button>
             </div>

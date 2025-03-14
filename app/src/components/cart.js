@@ -15,7 +15,7 @@ const Cart = () => {
 
   const deleteOne = async (id) => {
     try {
-      await axios.delete("http://localhost:4000/cart/delete/${id}");
+      await axios.delete(`http://localhost:4000/cart/delete/${id}`);
       getCart();
     } catch (error) {
       console.log("Error al borrar producto", error);
@@ -24,7 +24,7 @@ const Cart = () => {
 
   const deleteAll = async () => {
     try {
-      await axios.delete("http://localhost:4000/cart/deleteAll/${user_id}");
+      await axios.delete(`http://localhost:4000/cart/deleteAll/${user_id}`);
       getCart();
     } catch (error) {
       console.log("Error al borrar productos", error);
