@@ -12,6 +12,7 @@ import ProductList from "./components/ProductList";
 import Shop from "./components/Shop";
 import { Dashboard } from "./Dashboard";
 import Header from "./components/header";
+import Shoe from "./shoe";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/shop",
     element: <Shop />,
+  },
+  {
+    path: "/shoe",
+    element: <Shoe />,
   },
 ]);
 

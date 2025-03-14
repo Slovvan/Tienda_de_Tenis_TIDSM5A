@@ -63,3 +63,37 @@ body {
     border-color: black;
     font-size: 12px;
 }
+
+footer{
+    background-color: #cdc04c;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    color: #ffffff;
+}
+
+#logo-white {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.menu-nav-footer ul {
+    list-style: none;
+}
+
+.menu-nav-footer li{
+    display: inline;
+    margin-right: 50px;
+}
+
+.menu-nav-footer a{
+    color:#ffffff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.horizontal{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

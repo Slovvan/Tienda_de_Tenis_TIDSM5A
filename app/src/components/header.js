@@ -26,7 +26,11 @@ function Header(){
          )
         }
  
-          <header>
+          <header style={{
+                background: "linear-gradient(135deg,rgb(120, 119, 114),rgb(232, 215, 132))",
+                border: "2px solidrgb(252, 180, 0)",
+                color: "#fff",
+            }}>
             <div className="container">
           <div className="container-header">
             <a href="/dashboard" id="logo">Kingdom Shoes 👑</a>
