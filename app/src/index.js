@@ -13,6 +13,7 @@ import Shop from "./components/Shop";
 import { Dashboard } from "./Dashboard";
 import Header from "./components/header";
 import Shoe from "./shoe";
+import Admin from "./adminviews/admin";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
     path: "/shoe",
     element: <Shoe />,
   },
+  {
+    path: "/admin",
+    element: <Admin />,
+  },
 ]);
 
 const user = localStorage.user ? JSON.parse(localStorage.user) : undefined;
@@ -47,7 +52,6 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <>
-    
       <RouterProvider router={router} />
     </>
   </React.StrictMode>

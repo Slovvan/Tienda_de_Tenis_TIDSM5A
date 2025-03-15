@@ -1,98 +1,112 @@
 import { ShoesModel } from "../models/ShoesModel.js";
 
-export const AddProduct= async (req, res) => {
-    try {
-       
-        //validar que los datos existen
-        const image = req.body.image
-        const brand = req.body.brand
-        const model = req.body.model
-        const price = req.body.price
-        const stock = req.body.stock
-        const color = req.body.color
+// ✅ Crear producto
+export const AddProduct = async (req, res) => {
+  try {
+    const { image, brand, model, price, stock, color } = req.body;
 
-         //clientes no pueden agregar productos
-         /* if(req.user?.rol !== "administrador"){
-            return res.status(400).json({
-                msg: "No eres administrador"
-            })
-         } */
-        if (!image || !brand || !model|| !price || !stock || !color){
-            return res.status(400).json({
-                msg: "faltan datos para crear un producto"
-            })
-        }
-
-        const shoes= await ShoesModel.create({
-            image,
-            brand,
-            model,
-            price,
-            stock,
-            color
-            
-        })
-
-        return res.status(200).json({
-            msg: "producto registrado con exito",
-
-        })
-
-    } catch (error) {
-        console.log(error)
-        return res.status(500).json({
-            msg: "Hubo un error al crear el producto"
-        })
+    if (!image || !brand || !model || !price || !stock || !color) {
+      return res.status(400).json({
+        msg: "Faltan datos para crear un producto",
+      });
     }
-}
 
-export const ShowProduct = async (req, res) => {
-    //correo y contraseña
-    //verificar que el usuario existe
-    try{
-        console.log(req.body.product_id)
-        const shoes = await ShoesModel.find({ _id: { $in: req.body.product_id }})
+    const shoes = await ShoesModel.create({
+      image,
+      brand,
+      model,
+      price,
+      stock,
+      color,
+    });
 
-        if(!shoes.length){
-             //si no existe devuelven error
-            return res.status(400).json({
-                msg: "No existen productos"
-            })
-        }
+    return res.status(201).json({
+      msg: "Producto registrado con éxito",
+      shoes,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      msg: "Hubo un error al crear el producto",
+    });
+  }
+};
 
-        return res.status(200).json({
-            msg: "productos existen",
-            shoes
-        })
-
-    }catch(error){
-        return res.status(500).json({
-            msg: "Hubo un error al buscar productos"
-        })
-    }
-}
-
+// ✅ Mostrar todos los productos
 export const ShowProducts = async (req, res) => {
-    //correo y contraseña
-    //verificar que el usuario existe
-    try{
-        const shoes = await ShoesModel.find()
+  try {
+    const shoes = await ShoesModel.find();
 
-        if(!shoes){
-             //si no existe devuelven error
-            return res.status(400).json({
-                msg: "No existen productos"
-            })
-        }
-
-        return res.status(200).json({
-            msg: "productos existen",
-            shoes
-        })
-
-    }catch(error){
-        return res.status(500).json({
-            msg: "Hubo un error al buscar productos"
-        })
+    if (!shoes.length) {
+      return res.status(404).json({
+        msg: "No existen productos",
+      });
     }
-}
+
+    return res.status(200).json({
+      msg: "Productos obtenidos con éxito",
+      shoes,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      msg: "Hubo un error al buscar productos",
+    });
+  }
+};
+
+// ✅ Mostrar productos por ID (opcional)
+export const ShowProduct = async (req, res) => {
+  try {
+    const { product_id } = req.body;
+
+    if (!product_id || !product_id.length) {
+      return res.status(400).json({
+        msg: "Debes proporcionar un ID de producto",
+      });
+    }
+
+    const shoes = await ShoesModel.find({ _id: { $in: product_id } });
+
+    if (!shoes.length) {
+      return res.status(404).json({
+        msg: "No se encontraron productos",
+      });
+    }
+
+    return res.status(200).json({
+      msg: "Producto(s) encontrado(s)",
+      shoes,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      msg: "Hubo un error al buscar el producto",
+    });
+  }
+};
+
+// ✅ Eliminar producto por ID
+export const DeleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletedProduct = await ShoesModel.findByIdAndDelete(id);
+
+    if (!deletedProduct) {
+      return res.status(404).json({
+        msg: "Producto no encontrado o ya eliminado",
+      });
+    }
+
+    return res.status(200).json({
+      msg: "Producto eliminado correctamente",
+      deletedProduct,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      msg: "Hubo un error al eliminar el producto",
+    });
+  }
+};
