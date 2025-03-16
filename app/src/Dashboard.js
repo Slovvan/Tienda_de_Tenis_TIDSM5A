@@ -6,10 +6,15 @@ import ProductList from './components/ProductList';
 
 export const Dashboard = () => {
     const [shoes, setShoes] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         getShoes();
     }, []);
+
+    const handleSearch = (term) => {
+        setSearchTerm(term);
+      };
 
     const getShoes = async () => {
         try {
@@ -22,14 +27,14 @@ export const Dashboard = () => {
 
     return (
         <>
-            <Header />
+            <Header onSearch={handleSearch}/>
             <main>
                 <div className="container">
                     <div className="container-main">
                         <h1 className="text-center" style={{color: "red"}}>¡Bienvenido!</h1>
                         <p className='text-center' style={{color: "green"}}>¡Gracias por ser parte de Kingdom Shoes!</p>
 
-                        <ProductList />
+                        <ProductList searchTerm={searchTerm} />
                     </div>
                 </div>
             </main>

@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const ProductList = () => {
+
+const ProductList = ({ searchTerm }) => {
   const user = localStorage.user ? JSON.parse(localStorage.user) : undefined;
   const [shoes, setShoes] = useState([]);
   const [filteredShoes, setFilteredShoes] = useState([]);
@@ -19,7 +20,7 @@ const ProductList = () => {
 
   useEffect(() => {
     filters();
-  }, [selectedColor, selectedBrand]);
+  }, [selectedColor, selectedBrand, searchTerm]);
 
   const getShoes = async () => {
     try {
@@ -64,7 +65,8 @@ const ProductList = () => {
     let filtered = shoes.filter((shoe) => {
       return (
         (selectedColor === "" || shoe.color === selectedColor) &&
-        (selectedBrand === "" || shoe.brand === selectedBrand)
+        (selectedBrand === "" || shoe.brand === selectedBrand) &&
+        (shoe.model.toLowerCase().includes(searchTerm.toLowerCase()) || shoe.brand.toLowerCase().includes(searchTerm.toLowerCase()))
       );
     });
     setFilteredShoes(filtered);

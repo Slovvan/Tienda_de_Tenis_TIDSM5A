@@ -6,9 +6,15 @@ import { Col, Row, Carousel } from "react-bootstrap";
 import Header from "./header";
 
 const Shop = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
   return (
     <>
-      <Header></Header>
+      <Header onSearch={handleSearch}></Header>
       <div className="container mt-3">
         <Row className="g-4">
           <Col className="d-flex justify-content-center align-items-center">
