@@ -40,7 +40,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.listen(4000, () => {
+app.listen(4001, () => {
   console.log("🚀 Aplicación corriendo en el puerto 4000");
 });
 

@@ -40,7 +40,7 @@ function Header({ onSearch }) {
 
       )
       }
-
+      {user?.rol === "client" && (
       <header style={{
         background: "linear-gradient(135deg,rgb(120, 119, 114),rgb(232, 215, 132))",
         border: "2px solidrgb(252, 180, 0)",
@@ -87,7 +87,8 @@ function Header({ onSearch }) {
           </div>
         </div>
       </header>
-
+  )
+}
 
     </>
   )

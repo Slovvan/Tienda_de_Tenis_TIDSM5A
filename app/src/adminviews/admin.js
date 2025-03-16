@@ -101,155 +101,158 @@ function Admin() {
 
   return (
     <Container className="admin-container">
-      <Navbar className="admin-navbar">
-        <div className="navbar-content">
-          <h2 className="logo-title">Kingdom Shoes 👑</h2>
-          <Button variant="dark" className="logout-btn">
-            Cerrar sesión
-          </Button>
+    <Navbar className="admin-navbar">
+      <Container>
+        <Navbar.Brand className="logo-title">Kingdom Shoes 👑</Navbar.Brand>
+        <Button variant="dark" className="logout-btn">
+          Cerrar sesión
+        </Button>
+      </Container>
+    </Navbar>
+
+    {error && <div className="alert alert-danger">{error}</div>}
+
+    <Row className="metrics-row">
+      <Col>
+        <Card className="metrics-card">
+          <Card.Body>
+            <Card.Title>Usuarios</Card.Title>
+            <Card.Text>{metrics.numberUsers}</Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col>
+        <Card className="metrics-card">
+          <Card.Body>
+            <Card.Title>Tenis</Card.Title>
+            <Card.Text>{metrics.numberShoes}</Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
+
+    <Row className="create-product-row">
+      <Col>
+        <Card className="form-card">
+          <Card.Body>
+            <Card.Title>Agregar nuevo tenis</Card.Title>
+            <Form onSubmit={handleCreateShoe}>
+              <Form.Group>
+                <Form.Label>Imagen (URL)</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="image"
+                  value={formData.image}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label>Marca</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="brand"
+                  value={formData.brand}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label>Modelo</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="model"
+                  value={formData.model}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label>Precio</Form.Label>
+                <Form.Control
+                  type="number"
+                  name="price"
+                  value={formData.price}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label>Stock</Form.Label>
+                <Form.Control
+                  type="number"
+                  name="stock"
+                  value={formData.stock}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label>Color</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="color"
+                  value={formData.color}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+
+              <Button type="submit" className="btn-gold mt-3">
+                Agregar tenis
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
+
+    <Row className="products-row">
+      {loading ? (
+        <div className="text-center">
+          <Spinner animation="border" variant="warning" />
+          <p>Cargando...</p>
         </div>
-      </Navbar>
-
-      {error && <div className="alert alert-danger">{error}</div>}
-
-      <Row className="metrics-row">
-        <Col>
-          <Card className="metrics-card">
-            <Card.Body>
-              <Card.Title>Usuarios</Card.Title>
-              <Card.Text>{metrics.numberUsers}</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col>
-          <Card className="metrics-card">
-            <Card.Body>
-              <Card.Title>Tenis</Card.Title>
-              <Card.Text>{metrics.numberShoes}</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-
-      <Row className="create-product-row">
-        <Col>
-          <Card className="form-card">
-            <Card.Body>
-              <Card.Title>Agregar nuevo tenis</Card.Title>
-              <Form onSubmit={handleCreateShoe}>
-                <Form.Group>
-                  <Form.Label>Imagen (URL)</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="image"
-                    value={formData.image}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Label>Marca</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="brand"
-                    value={formData.brand}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Label>Modelo</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="model"
-                    value={formData.model}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Label>Precio</Form.Label>
-                  <Form.Control
-                    type="number"
-                    name="price"
-                    value={formData.price}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Label>Stock</Form.Label>
-                  <Form.Control
-                    type="number"
-                    name="stock"
-                    value={formData.stock}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-
-                <Form.Group>
-                  <Form.Label>Color</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="color"
-                    value={formData.color}
-                    onChange={handleInputChange}
-                  />
-                </Form.Group>
-
-                <Button type="submit" className="btn-gold mt-3">
-                  Agregar tenis
-                </Button>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-
-      <Row className="products-row">
-        {loading ? (
-          <div className="text-center">
-            <Spinner animation="border" variant="warning" />
-            <p>Cargando...</p>
-          </div>
-        ) : (
-          <Card className="products-carousel-card">
-            <Carousel>
-              {groupedProducts.map((shoesGroup, i) => (
-                <Carousel.Item key={i}>
-                  <div className="product-group">
-                    {shoesGroup.map((shoe) => (
-                      <div key={shoe._id} className="product-card">
-                        <div className="card text-center">
-                          <img
-                            src={shoe.image}
-                            alt={shoe.model}
-                            className="product-image"
-                          />
-                          <div className="card-body">
-                            <h5>{shoe.brand}</h5>
-                            <h6>{shoe.model}</h6>
-                            <p className="price">${shoe.price} MXN</p>
-                            <p className="stock">Stock: {shoe.stock}</p>
-                            <Button
-                              variant="danger"
-                              onClick={() => handleDeleteShoe(shoe._id)}
-                              className="btn-delete"
-                            >
-                              Eliminar
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          </Card>
-        )}
-      </Row>
-    </Container>
+      ) : (
+        <Carousel className="products-carousel">
+          {groupedProducts.map((shoesGroup, i) => (
+            <Carousel.Item key={i}>
+              <Row className="product-group">
+                {shoesGroup.map((shoe) => (
+                  <Col key={shoe._id} md={4} className="product-card">
+                    <Card>
+                      <Card.Img
+                        variant="top"
+                        src={shoe.image}
+                        alt={shoe.model}
+                        className="product-image"
+                      />
+                      <Card.Body>
+                        <Card.Title>{shoe.brand}</Card.Title>
+                        <Card.Subtitle>{shoe.model}</Card.Subtitle>
+                        <Card.Text className="price">
+                          ${shoe.price} MXN
+                        </Card.Text>
+                        <Card.Text className="stock">
+                          Stock: {shoe.stock}
+                        </Card.Text>
+                        <Button
+                          variant="danger"
+                          onClick={() => handleDeleteShoe(shoe._id)}
+                          className="btn-delete"
+                        >
+                          Eliminar
+                        </Button>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      )}
+    </Row>
+  </Container>
   );
 }
 

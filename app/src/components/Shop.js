@@ -4,6 +4,7 @@ import Cart from "./cart";
 import "./Shop.css";
 import { Col, Row, Carousel } from "react-bootstrap";
 import Header from "./header";
+import Footer from "./footer";
 
 const Shop = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -60,7 +61,9 @@ const Shop = () => {
             <Cart />
           </Col>
         </Row>
+        
       </div>
+      <Footer></Footer>
     </>
   );
 };

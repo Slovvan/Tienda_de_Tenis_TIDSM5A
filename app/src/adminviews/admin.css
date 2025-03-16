@@ -1,175 +1,122 @@
-:root {
-    --gold: #d4af37;
-    --dark: #1a1a1a;
-    --white: #ffffff;
-    --red: #e74c3c;
-  }
-  
-  /* Fondo general */
-  body {
-    background-color: var(--dark);
-    color: var(--white);
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Navbar */
-  .admin-navbar {
-    background-color: var(--dark);
-    margin-bottom: 40px;
-  }
-  
-  .navbar-content {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-  }
-  
-  .logo-title {
-    color: var(--gold);
-    font-size: 1.8rem;
-    font-weight: bold;
-  }
-  
-  .logout-btn {
-    background-color: var(--gold);
-    color: var(--dark);
-    border: none;
-    font-weight: bold;
-  }
-  
-  .logout-btn:hover {
-    background-color: #bfa036;
-  }
-  
-  /* Container principal */
-  .admin-container {
-    padding: 20px;
-  }
-  
-  /* Métricas */
-  .metrics-row {
-    margin-bottom: 40px;
-  }
-  
-  .metrics-card {
-    background-color: #2c2c2c;
-    color: var(--white);
-    border: 1px solid var(--gold);
-    text-align: center;
-  }
-  
-  .metrics-card .card-title {
-    color: var(--gold);
-    font-size: 1.5rem;
-  }
-  
-  /* Formulario */
-  .create-product-row {
-    margin-bottom: 50px;
-  }
-  
-  .form-card {
-    background-color: #2c2c2c;
-    color: var(--white);
-    border: 1px solid var(--gold);
-  }
-  
-  .form-card .card-title {
-    color: var(--gold);
-    font-weight: bold;
-  }
-  
-  .form-card input {
-    background-color: #333;
-    color: var(--white);
-    border: 1px solid #555;
-  }
-  
-  .btn-gold {
-    background-color: var(--gold);
-    color: var(--dark);
-    border: none;
-  }
-  
-  .btn-gold:hover {
-    background-color: #bfa036;
-  }
-  
-  /* Productos */
-  .products-row {
-    margin-bottom: 40px;
-  }
-  
-  .products-carousel-card {
-    background-color: #2c2c2c;
-    padding: 20px;
-    border: 1px solid var(--gold);
-  }
-  
-  .product-group {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .product-card {
-    width: 250px;
-  }
-  
-  .product-card .card {
-    background-color: #333;
-    border: 1px solid #444;
-    color: var(--white);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.3s;
-  }
-  
-  .product-card .card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .product-image {
-    width: 100%;
-    height: 250px; /* Controla el alto de la imagen */
-    object-fit: contain; /* Evita que la imagen se deforme */
-    background-color: #f0f0f0; /* Fondo para resaltar la imagen */
-    padding: 10px;
-  }
-  
-  .card-body h5 {
-    color: var(--gold);
-    margin-bottom: 5px;
-  }
-  
-  .card-body h6 {
-    color: #ccc;
-    margin-bottom: 10px;
-  }
-  
-  .price {
-    font-weight: bold;
-    color: var(--gold);
-  }
-  
-  .stock {
-    color: #aaa;
-  }
-  
-  .btn-delete {
-    background-color: var(--red);
-    color: var(--white);
-    border: none;
-  }
-  
-  .btn-delete:hover {
-    background-color: #c0392b;
-  }
-  
-  /* Spinner */
-  .text-center p {
-    color: var(--gold);
-  }
-  
+/* Contenedor principal del panel de administración */
+.admin-container {
+  padding: 20px;
+}
+
+/* Barra de navegación en la sección de administración */
+.admin-navbar {
+  background-color: #343a40;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Título del logo */
+.logo-title {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Botón de cerrar sesión */
+.logout-btn {
+  background-color: #ffc107;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+}
+
+/* Fila que contiene las métricas */
+.metrics-row {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Tarjetas de métricas */
+.metrics-card {
+  background-color: #f8f9fa;
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* Contenedor para agregar un nuevo producto */
+.create-product-row {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Tarjeta del formulario de creación */
+.form-card {
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Botón para agregar tenis */
+.btn-gold {
+  background-color: #ffc107;
+  border: none;
+  font-weight: bold;
+}
+
+/* Fila que contiene los productos */
+.products-row {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Carrusel de productos */
+.products-carousel {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Grupo de productos en cada slide del carrusel */
+.product-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Tarjeta individual de producto */
+.product-card {
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Imagen del producto */
+.product-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Precio del producto */
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #28a745;
+}
+
+/* Stock del producto */
+.stock {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* Botón para eliminar */
+.btn-delete {
+  background-color: #dc3545;
+  border: none;
+  margin-top: 10px;
+  font-weight: bold;
+}
