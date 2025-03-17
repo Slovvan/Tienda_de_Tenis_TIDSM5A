@@ -18,6 +18,7 @@ import {
 
 import {
   AddCart,
+  Buy,
   ShowCartProducts,
   deleteAll,
   deleteOne,
@@ -40,7 +41,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.listen(4001, () => {
+app.listen(4000, () => {
   console.log("🚀 Aplicación corriendo en el puerto 4000");
 });
 
@@ -51,6 +52,7 @@ app.get("/metrics", getMetrics);
 
 // 📦 Rutas de productos
 app.post("/product/add", AddProduct);
+app.post("/product/buy", Buy);
 app.get("/product/showAll", ShowProducts);
 app.post("/product/show", ShowProduct);
 app.delete("/product/delete/:id", DeleteProduct); // <- DELETE TENIS

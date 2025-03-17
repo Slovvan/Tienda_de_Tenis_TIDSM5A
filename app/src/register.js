@@ -11,16 +11,20 @@ function Register(){
         e.preventDefault()
         const nData = data
         nData[e.target.name] = e.target.value
-        setData(nData)
-        console.log(nData)
+            setData(nData)
+            console.log(nData)
     }
 
     const onSubmit = async ()=>{
         try {
+            if(data["password"] != data["password2"] ){
+                alert("Contraseña Distinta")
+            } else{
             data.rol = "client"
             await axios.post("http://localhost:4000/users/register", data)
             console.log("Usuario registrado con exito")
             navigate("/")
+            }
 
         } catch (error) {
             alert("Ocurrio un error")
@@ -45,6 +49,9 @@ function Register(){
                 
                 <label className="Loginlabel">Contraseña:</label>
                 <input className="Logininput"type="password" required onChange={onChangeRegister} name="password" placeholder="Ingresa tu Contraseña"/>
+
+                <label className="Loginlabel">Confirmar Contraseña:</label>
+                <input className="Logininput"type="password" required onChange={onChangeRegister} name="password2" placeholder="COnfirma tu Contraseña"/>
 
                 <Button className="Loginbutton Hoverbutton" onClick={onSubmit} >Registrarse</Button>
             </form>

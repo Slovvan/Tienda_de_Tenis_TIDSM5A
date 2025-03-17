@@ -77,8 +77,18 @@ const Cart = () => {
         (acc, producto) => acc + producto.price * producto.quantity,
         0
       )
-    : 0;
-  console.log("Contenido del carrito en Cart.js:", cart);
+    : 0;  
+
+  const purchaseShoes = async () => {
+    try {
+      const res = await axios.post(`http://localhost:4000/product/buy`, {user_id: user_id});
+      alert(res.data.message);
+      getCart();
+    } catch (error) {
+      console.log("Error en la compra", error);
+      alert("Error en la compra" )
+    }
+  };
 
   return (
     <div className="cart-container">
@@ -111,7 +121,7 @@ const Cart = () => {
 
           <div className="cart-details">
             <h4>Total: ${total} MXN</h4>
-            <Button className="btn btn-dark mt-2" onClick={() => deleteAll()}>
+            <Button className="btn btn-dark mt-2" onClick={() => purchaseShoes()}>
               Comprar
             </Button>
             <Button className="btn btn-dark mt-2" onClick={() => deleteAll()}>

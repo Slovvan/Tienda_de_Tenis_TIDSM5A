@@ -1,4 +1,5 @@
 import { CartModel } from "../models/CartModel.js";
+import { ShoesModel } from "../models/ShoesModel.js";
 
 export const AddCart= async (req, res) => {
     try {
@@ -124,6 +125,42 @@ export const updateProduct = async (req, res) => {
     }catch(error){
         return res.status(500).json({
             msg: "Hubo un error al buscar productos"
+        })
+    }
+}
+
+export const Buy = async (req, res) => {
+    try {
+
+        const cartItems = await CartModel.find({ user_id: req.body.user_id });
+
+        if (!cartItems.length) {
+          return res.status(400).json({ message: "El carrito está vacío." });
+        }
+
+        for (const item of cartItems) {
+            const shoes = await ShoesModel.findById(item.product_id);
+            if (!shoes) {
+              return res.status(404).json({ message: `Producto no encontrado: ${item.product_id}` });
+            }
+      
+            if (shoes.stock < item.quantity) {
+              return res.status(400).json({ message: `Stock insuficiente para ${shoes.name}` });
+            }
+          }
+
+          for (const item of cartItems) {
+            await ShoesModel.findByIdAndUpdate(item.product_id, {
+              $inc: { stock: -item.quantity },
+            });
+          }
+
+          await CartModel.deleteMany({ user_id: req.body.user_id  });
+    
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            msg: "Hubo un error al realizar la compra"
         })
     }
 }
